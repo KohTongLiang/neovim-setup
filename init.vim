@@ -29,6 +29,9 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
 " NERD Tree
  Plug 'preservim/nerdtree'
 
+ " OmniSharp
+ Plug 'OmniSharp/omnisharp-vim'
+
  call plug#end()
 
  " NERDTree settings
@@ -54,6 +57,10 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
  let g:fzf_layout = { 'down': '40%' }
  let g:fzf_buffers_jump = 1
  nnoremap <leader>f :FZF<CR>
+
+ " Omni Sharp
+ let g:OmniSharp_translate_cygwin_wsl = 1
+ let g:OmniSharp_selector_ui = 'fzf'
 
  " Autocomplete
  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
