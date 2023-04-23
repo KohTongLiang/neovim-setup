@@ -32,6 +32,9 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
  " OmniSharp
  Plug 'OmniSharp/omnisharp-vim'
 
+ " Copilot
+ Plug 'github/copilot.vim'
+
  call plug#end()
 
  " NERDTree settings
