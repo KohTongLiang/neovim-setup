@@ -26,6 +26,9 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
 
  " molokai theme
  Plug 'tomasr/molokai'
+ 
+ " Gruvbox theme
+ Plug 'gruvbox-community/gruvbox'
 
 " NERD Tree
  Plug 'preservim/nerdtree'
@@ -37,7 +40,7 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
  Plug 'github/copilot.vim'
 
  call plug#end()
-
+ 
  " NERDTree settings
  let g:NERDTreeShowHidden=1          " show hidden files
  let g:NERDTreeMinimalUI=1           " hide the toolbar
@@ -69,7 +72,18 @@ set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencodi
  " Autocomplete
  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
- let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-yaml', 'coc-prettier', 'coc-go', 'coc-python', 'coc-css', 'coc-html', 'coc-omnisharp']
+ let g:coc_global_extensions = [
+														 	  'coc-tsserver',
+ 																'coc-eslint',
+																'coc-json',
+																'coc-yaml',
+															  'coc-prettier', 
+																'coc-go',
+																'coc-python',
+																'coc-css',
+																'coc-html',
+																'coc-omnisharp'
+																]
 let g:coc_node_args = ['--max-http-header-size=102400']
 let g:coc_install_retry = 1
 nnoremap <C-f> :CocCommand prettier.formatFile<CR>
@@ -79,14 +93,15 @@ nnoremap <C-f> :CocCommand prettier.formatFile<CR>
  nnoremap <leader>gs :Git<CR>
 
  " Statusline
- let g:airline_theme='molokai'
+ let g:airline_theme='gruvbox'
  let g:airline#extensions#tabline#enabled=1
  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
  let g:airline_powerline_fonts = 1
 
  " Set colorscheme
  syntax enable
- set termguicolors
- set background=dark
- colorscheme molokai
+ " set termguicolors
+ set background=light
+ " colorscheme molokai
+ colorscheme gruvbox
 
