@@ -1,4 +1,5 @@
 set number
+set relativenumber
 set ruler                    " show the cursor position at the bottom right corner
 set laststatus=2             " always show the status line
 set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencoding}\ %=%P
