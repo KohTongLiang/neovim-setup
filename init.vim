@@ -92,6 +92,10 @@ nnoremap <C-f> :CocCommand prettier.formatFile<CR>
  " Git integration
  nnoremap <leader>gs :Git<CR>
 
+ " Buffer Switching
+ let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#tabline#buffer_nr_show = 1
+
  " Statusline
  let g:airline_theme='gruvbox'
  let g:airline#extensions#tabline#enabled=1
@@ -100,8 +104,10 @@ nnoremap <C-f> :CocCommand prettier.formatFile<CR>
 
  " Set colorscheme
  syntax enable
+
  " set termguicolors
- set background=light
+ set background=dark
+ 
  " colorscheme molokai
  colorscheme gruvbox
 
