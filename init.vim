@@ -111,6 +111,7 @@ lua << EOF
 EOF
 
 
+<<<<<<< HEAD
 " Statusline
 " Buffer Switching
 let g:airline#extensions#tabline#enabled = 1
@@ -294,4 +295,12 @@ let g:any_jump_references_only_for_current_filetype = 0
 " Disable search engine ignore vcs untracked files
 " (default: false, search engine will ignore vcs untracked files)
 let g:any_jump_disable_vcs_ignore = 0
+=======
+ " Set colorscheme
+ syntax enable
+ " set termguicolors
+ set background=dark
+ " colorscheme molokai
+ colorscheme gruvbox
+>>>>>>> e66d1cb (Win settings nvim)
 
