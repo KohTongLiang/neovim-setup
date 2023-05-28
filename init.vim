@@ -3,7 +3,7 @@ set relativenumber
 set ruler                    " show the cursor position at the bottom right corner
 set laststatus=2             " always show the status line
 set statusline=%<%F\ %h%m%r%{strftime('\ \|\ %c:%l',getpos('.'))}\ %{&fileencoding}\ %=%P
-" 
+
 " Allow copy paste inbetween neovim and other processes
 set clipboard=unnamed
 
@@ -33,34 +33,31 @@ set clipboard=unnamed
  " Gruvbox theme
  Plug 'gruvbox-community/gruvbox'
 
-" NERD Tree
- Plug 'preservim/nerdtree'
-
  " OmniSharp
  Plug 'OmniSharp/omnisharp-vim'
 
  " Copilot
  Plug 'github/copilot.vim'
 
- call plug#end()
- 
- " NERDTree settings
- let g:NERDTreeShowHidden=1          " show hidden files
- let g:NERDTreeMinimalUI=1           " hide the toolbar
- let g:NERDTreeAutoDeleteBuffer=1    " delete buffer when file is deleted
- let g:NERDTreeAutoCenter=1          " center NERDTree when opening a file
- let g:NERDTreeIgnore=['\.pyc$', '\~$']  " ignore files with these patterns
- autocmd StdinReadPre * let s:std_in=1
- autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
- autocmd BufWinEnter * silent NERDTreeFind
- nnoremap <C-t> :NERDTreeToggle<CR>
+ " NERDTree
+ Plug 'preservim/nerdtree'
 
- " Auto-refresh NERDTree when new file is created
- autocmd BufWritePost * NERDTreeRefreshRoot
+ call plug#end()
 
  " Set leader key
  let mapleader = "\<Space>"
+
+ " nerd tree config
+ let g:NERDTreeShowHidden=1          " show hidden files
+ let g:NERDTreeMinimalUI=1           " hide the toolbar
+ let g:NERDTreeAutoDeleteBuffer=1    " delete buffer when file is deleted
+ " let g:NERDTreeAutoCenter=1          " center NERDTree when opening a file
+ " autocmd StdinReadPre * let s:std_in=1
+ " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+ " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+ " autocmd BufWinEnter * silent NERDTreeFind
+ nnoremap <C-t> :NERDTreeToggle<CR>
+ autocmd BufWritePost * NERDTreeRefreshRoot
 
  " Fuzzy finder
  set rtp+=~/.fzf
@@ -75,21 +72,11 @@ set clipboard=unnamed
  " Autocomplete
  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
- let g:coc_global_extensions = [
-														 	  'coc-tsserver',
- 																'coc-eslint',
-																'coc-json',
-																'coc-yaml',
-															  'coc-prettier', 
-																'coc-go',
-																'coc-python',
-																'coc-css',
-																'coc-html',
-																'coc-omnisharp'
-																]
-let g:coc_node_args = ['--max-http-header-size=102400']
-let g:coc_install_retry = 1
-nnoremap <C-f> :CocCommand prettier.formatFile<CR>
+ let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint','coc-json','coc-yaml','coc-prettier','coc-go','coc-python',	'coc-css','coc-html','coc-omnisharp']
+
+ let g:coc_node_args = ['--max-http-header-size=102400']
+ let g:coc_install_retry = 1
+ nnoremap <C-f> :CocCommand prettier.formatFile<CR>
 
 
  " Git integration
