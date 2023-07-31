@@ -68,11 +68,13 @@ set clipboard=unnamed
  " Omni Sharp
  let g:OmniSharp_translate_cygwin_wsl = 1
  let g:OmniSharp_selector_ui = 'fzf'
+ let g:OmniSharp_server_stdio = 1
+ let g:OmniSharp_server_use_mono = 1
 
  " Autocomplete
  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
- let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint','coc-json','coc-yaml','coc-prettier','coc-go','coc-python',	'coc-css','coc-html','coc-omnisharp']
+ let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint','coc-json','coc-yaml','coc-prettier','coc-go','coc-python',	'coc-css','coc-html','coc-omnisharp', 'coc-clangd']
 
  let g:coc_node_args = ['--max-http-header-size=102400']
  let g:coc_install_retry = 1
@@ -99,5 +101,5 @@ set clipboard=unnamed
  set background=dark
  
  " colorscheme molokai
- colorscheme gruvbox
+ " colorscheme gruvbox
 
