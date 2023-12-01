@@ -13,6 +13,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+
+" optional for icon support
+Plug 'nvim-tree/nvim-web-devicons'
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -43,6 +50,12 @@ Plug 'preservim/nerdtree'
 " Comment
 Plug 'numToStr/Comment.nvim'
 
+" Debugger Adapter Protocol
+Plug 'mfussenegger/nvim-dap'
+
+" Log Highlighter
+Plug 'fei6409/log-highlight.nvim'
+
 call plug#end()
 
 " Set leader key
@@ -66,10 +79,12 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 autocmd BufWritePost * NERDTreeRefreshRoot
 
 " Fuzzy finder
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>FZF<cr>
+nnoremap <leader>fd <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <c-P> <cmd>lua require('fzf-lua').files()<CR>
 
 " Omni Sharp
 let g:OmniSharp_translate_cygwin_wsl = 1
@@ -107,5 +122,81 @@ let g:airline_powerline_fonts = 1
 " Set colorscheme
 syntax enable
 
-colorscheme tokyonight-night
+" DAP Configure Unity Adapter
+lua << EOF
+local dap = require("dap")
+dap.adapters.unity = {
+	type = 'executable',
+	command = '',
+	args = { '' }
+}
+EOF
+
+" fzf for telescope
+" lua << EOF
+" -- You dont need to set any of these options. These are the default ones. Only
+" -- the loading is important
+" require('telescope').setup {
+"   extensions = {
+"     fzf = {
+"       fuzzy = true,                    -- false will only do exact matching
+"       override_generic_sorter = true,  -- override the generic sorter
+"       override_file_sorter = true,     -- override the file sorter
+"       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+"                                        -- the default case_mode is "smart_case"
+"     }
+"   }
+" }
+" -- To get fzf loaded and working with telescope, you need to call
+" -- load_extension, somewhere after setup function:
+" require('telescope').load_extension('fzf')
+" EOF
+
+colorscheme tokyonight-moon
+
+" Git Signs
+lua << EOF
+require('gitsigns').setup {
+      signs = {
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+      },
+      signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+      numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+      linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+      word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+      watch_gitdir = {
+        follow_files = true
+      },
+      attach_to_untracked = true,
+      current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
+      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+      sign_priority = 6,
+      update_debounce = 100,
+      status_formatter = nil, -- Use default
+      max_file_length = 40000, -- Disable if file is longer than this (in lines)
+      preview_config = {
+        -- Options passed to nvim_open_win
+        border = 'single',
+        style = 'minimal',
+        relative = 'cursor',
+        row = 0,
+        col = 1
+      },
+      yadm = {
+        enable = false
+      },
+    }
+EOF
 
