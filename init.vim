@@ -37,6 +37,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Theme
 Plug 'folke/tokyonight.nvim'
+Plug 'olimorris/onedarkpro.nvim'
 
 " OmniSharp
 Plug 'OmniSharp/omnisharp-vim'
@@ -153,7 +154,7 @@ EOF
 " require('telescope').load_extension('fzf')
 " EOF
 
-colorscheme tokyonight-moon
+colorscheme onedark_dark
 
 " Git Signs
 lua << EOF
